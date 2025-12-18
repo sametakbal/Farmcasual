@@ -10,8 +10,8 @@ public class MobileJoystick : MonoBehaviour
 
     [Header(" Settings ")]
     [SerializeField] private bool canControl;
-    [SerializeField] private float moveFactor = 50f;
-
+    [SerializeField] private float moveFactor = 540f;
+    private Vector3 move;
     private Vector3 clickedPosition;
 
 
@@ -56,7 +56,7 @@ public class MobileJoystick : MonoBehaviour
 
         moveMagnitude = Mathf.Min(moveMagnitude, joystickOutline.rect.width / 2);
 
-        Vector3 move = direction.normalized * moveMagnitude;
+        move = direction.normalized * moveMagnitude;
         Vector3 targetPosition = clickedPosition + move;
         joystickKnob.position = targetPosition;
 
@@ -64,8 +64,10 @@ public class MobileJoystick : MonoBehaviour
         {
             HideJoystick();
         }
+    }
 
-
-
+    public Vector3 GetMoveVector()
+    {
+        return move;
     }
 }
